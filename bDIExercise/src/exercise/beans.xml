@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<bean id='customer' class="exercise.order.domain.Customer">
+   <property name="id" value='1'/>
+	<property name="name" value='홍길동'/>
+	<property name="address" value='서울시'/>
+	<property name="email" value='hong@encore.com'/>
+</bean>
+
+<!-- 
+	1. 여기에 빈 생성을 추가하거나 컴포넌트 스캔 방식 => 컴포넌트 스캔방식 : 곳곳에 어노테이션 부착 
+	2. CustomerServiceImpl에 필요한 부분을 추가
+ -->
+
+<!-- <bean id='customerServiceImpl' class="exercise.order.service.CustomerServiceImpl"></bean> -->
+
+<!-- 가급적 골뱅이를 찾을 수 있는 최소로 범위를 지정해서 경로를 알려주자 -->
+<context:component-scan base-package="exercise.order"></context:component-scan>
+
+</beans>
