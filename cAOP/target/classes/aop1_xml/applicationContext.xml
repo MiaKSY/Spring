@@ -17,7 +17,7 @@
 <!-- AOP : 관점지향 프로그램 -->
 <!-- namespaces에서 aop 체크 -->
 <aop:config>
-	<!-- public 자료형상관없이 패키지이름.아무파일에서.뒤에Hello가 붙은 함수(인자 상관 없이) -->
+	<!-- public으로 된 자료형상관없이 패키지이름과.하위모든클래스에서.함수이름뒤에Hello가 붙은 함수(인자 상관 없이) -->
 	<aop:pointcut expression="execution(public * aop1_xml.*.*Hello(..))" id="pointCut"/>
 	<aop:aspect ref="advice">
 		<aop:before method="before" pointcut-ref="pointCut"/>

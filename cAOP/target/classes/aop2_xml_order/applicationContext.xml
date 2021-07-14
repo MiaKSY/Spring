@@ -6,23 +6,36 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 
+<!-- 1. 빈 생성 -->
 
-<!-- 1. target 빈 생성 -->
-<bean id='targetBean' class="aop1_xml.MessageBeanImpl"></bean>
+<!-- 1-1 . target 빈 생성 -->
+<bean id='targetBean' class="aop2_xml_order.MessageBeanImpl"></bean>
 
-<!-- 2. advice 빈 생성 -->
-<bean id='advice' class="aop1_xml.LoggingAdvice"></bean>
+<!-- 1-2. advice 빈 생성 -->
+<bean id='advice' class="aop2_xml_order.LoggingAdvice"></bean>
+<!-- 1-3. 빈 생성 -->
+<bean id='sampleAdvice' class="aop2_xml_order.SecuritySample"></bean>
 
-<!-- 3. AOP 환경셟정 : (1) XML 방식 -->
+
+
+
+<!-- 2. AOP 환경셟정 : (1) XML 방식 -->
 <!-- AOP : 관점지향 프로그램 -->
 <!-- namespaces에서 aop 체크 -->
 <aop:config>
+	<!-- 만약 모든 패키지 모든 클래스 모든 페이지 적용이라면 : expression="execution(public * *(..))" -->
 	<!-- public으로 된 자료형상관없이 패키지이름과.하위모든클래스에서.함수이름뒤에Hello가 붙은 함수(인자 상관 없이) -->
-	<aop:pointcut expression="execution(public * aop1_xml.*.*Hello(..))" id="pointCut"/>
+	<aop:pointcut expression="execution(public * aop2_xml_order.*.*Hello(..))" id="pointCut"/>
 	<aop:aspect ref="advice">
 		<aop:before method="before" pointcut-ref="pointCut"/>
 		<aop:around method="around" pointcut-ref="pointCut"/>
 	</aop:aspect>
+	
+	<!-- 위에서 빈 생성하면서 준 id 값을 여기서 ref 로 가져온다. -->
+	<aop:aspect ref="sampleAdvice">
+		<aop:after method="after" pointcut-ref="pointCut"/>
+	</aop:aspect>
+	
 </aop:config>
 
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+<!-- *** 중요! 잊지 말자 빈 생성 *** -->
+<!-- 빈 생성 (두가지 방법) -->
+<!-- 1) bean 태그를 써서 직접 생성 -->
+<!-- 
+<bean class="sample.HelloController"></bean>
+ -->
+<!-- 2) 자동으로 스캔시킴 -->
+<!-- 아래 Namespaces에서 context 체크하고 -->
+<context:component-scan base-package="sample"></context:component-scan>
+
+
+
+
+
+
+</beans>

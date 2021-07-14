@@ -1,4 +1,4 @@
-package aop1_xml;
+package aop2_xml_order;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
