@@ -5,6 +5,7 @@ public class MemberVO {
 	private String id;
 	private int age;
 	private String name;
+	private boolean state;
 
 	
 	public String getId() {
@@ -24,6 +25,12 @@ public class MemberVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public boolean isState() {
+		return state;
+	}
+	public void setState(boolean state) {
+		this.state = state;
 	}
 
 
