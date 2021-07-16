@@ -22,16 +22,52 @@ public class BoardController {
 	// ModelAndView, Model 두가지 방법이 있는데, 
 	// 이미 이름을 다 맞춰놨다면 Model 방법이 더 간편하다. 
 	
+	
+	
+	
+	//***********************************************
+	// ▼ DB 데이터를 가져오기!!! (select로 만든 검색기능 추가 전)
+	//***********************************************
 	// @RequestMapping("getBoardList.do")
 	// ▲ 슬래시 있고 없고 현재는 상관없다. ▼
-	@RequestMapping("/getBoardList.do")
-	public void getBoardList(Model m) {
-		m.addAttribute("boardList", boardService.getBoardList());
-	}
+	//***********************************************
+//	@RequestMapping("/getBoardList.do")
+//	public void getBoardList(Model m) {
+//		m.addAttribute("boardList", boardService.getBoardList());
+//	}
+	//***********************************************
 	// select => addAttribute 넘겨주자
 	// 그 변수를 ""지정을해서 view단에 넘겨주자
+	//***********************************************
 	
 	
+	
+	
+	
+	//***********************************************
+	// ▼ DB 데이터를 가져오기!!! (select로 만든 검색기능 추가 후)
+	//***********************************************
+	// 인터페이스 BoardService에 가서 인자를 추가해주고
+	// BoardServiceImpl에 가서 인자를 추가해주고
+	// 인터페이스 BoardDAO에 가서 인자를 추가해주고
+	// BoardDAOImpl에 가서 인자를 추가해준다
+	// BoardMapper.xml에 가서 WHERE절을 추가해준다
+	//***********************************************
+	@RequestMapping("/getBoardList.do")
+	public void getBoardList(Model m, String searchCondition, String searchKeyword) {
+		m.addAttribute("boardList", boardService.getBoardList(searchCondition, searchKeyword));
+	}
+	
+	
+	
+	
+	
+	//***********************************************
+	// ▼ 이것이 가장 어려움!!!
+	//***********************************************
+	//***********************************************
+	// ▼ DB 데이터를 가져오기!!!
+	//***********************************************
 	@RequestMapping("getBoard.do")
 	  public void getBoard(Model m, BoardVO vo) {
        m.addAttribute("board", boardService.getBoard(vo));
@@ -42,26 +78,13 @@ public class BoardController {
 	
 	
 	
-	
-	
+	// (단순 화면 전환) 화면 입력시키는 곳으로 보내기
 	@RequestMapping("insertBoard.do")
 	public void insertBoard() {
 		
 	}
 
-	
-//	@RequestMapping("saveBoard.do")
-//	public ModelAndView saveBoard(BoardDAO boardDAO) {
-//		BoardVO vo = new BoardVO();
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("boardDAO");
-//		mv.addObject("seq", vo.getSeq());
-//		mv.addObject("title", vo.getTitle());
-//		mv.addObject("writer", vo.getWriter());
-//		mv.addObject("regDate", vo.getRegDate());
-//		mv.addObject("cnt", vo.getCnt());
-//		return mv;
-//	}
+
 	
 	//***********************************************
 	// ▼ DB에 입력시키고!!!! 목록으로 가져오기!!!
@@ -78,6 +101,11 @@ public class BoardController {
 	}
 	
 	
+	
+	
+	//***********************************************
+	// ▼ DB에 삭제시키고!!!! 목록으로 가져오기!!!
+	//***********************************************	
 	@RequestMapping("deleteBoard.do")
 	public String deleteBoard(BoardVO vo) {
 		boardService.deleteBoard(vo);
@@ -85,36 +113,17 @@ public class BoardController {
 	}
 	
 	
+	
+	
+	//***********************************************
+	// ▼ DB에 수정시키고!!!! 목록으로 가져오기!!!
+	//***********************************************
 	@RequestMapping("updateBoard.do")
 	public String updateBoard(BoardVO vo) {
 		boardService.updateBoard(vo);
 		return "redirect:getBoardList.do";
 	}
 
-	
-	
-	
-	
-//	@RequestMapping("getBoard.do")
-//	public BoardVO getBoard(Model m) {
-//		BoardVO vo = new BoardVO();
-//		m.addAttribute("board",boardService.getBoard(vo));
-//		return vo;
-//	}
-
-	
-	
-	
-//	@Autowired
-//	private BoardVO boardVO;
-//	
-//	@RequestMapping("getBoard.do")
-//	public ModelAndView getBoard() {
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("getBoard");
-//		mv.addObject("vo", boardVO);
-//		return mv;
-//	}
 	
 	
 	

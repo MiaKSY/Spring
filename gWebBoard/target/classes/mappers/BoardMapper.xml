@@ -3,6 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardDAO">
 
+	<!-- 
+	board라는 별칭을 쓰기 위해서 
+	mabatis-config에서 별칭을 지정해줬다. 
+	-->
 	
 	<insert id="insertBoard" parameterType="board">
 		<![CDATA[
@@ -37,6 +41,7 @@
 		]]>
 	</select>
 	
+<!-- 
 	<select id="getBoardList" resultType="board">
 		<![CDATA[
 		SELECT *
@@ -44,4 +49,26 @@
 		ORDER BY SEQ DESC
 		]]>
 	</select>
+ -->		
+	
+<!-- 
+	${} 는 스몰쿼테이션이 안 붙고
+	#{} 는 스몰쿼테이션이 붙는다. 
+	
+	내가 원하는 WHERE 절 : 
+	WHERE content LIKE '%test%'
+-->
+	<select id="getBoardList" resultType="board" parameterType="hashmap">
+		
+		SELECT *
+		FROM BOARD
+		<where>
+			<if test="searchCondition != null">
+				${searchCondition} LIKE '%${searchKeyword}%'
+			</if>
+		</where>
+		ORDER BY SEQ DESC
+	
+	</select>
+		
 </mapper>

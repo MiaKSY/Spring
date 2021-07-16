@@ -14,5 +14,7 @@ public interface BoardDAO {
 
 	public BoardVO getBoard(BoardVO vo) ;
 
-	public List<BoardVO> getBoardList() ;
+//	public List<BoardVO> getBoardList() ;
+	
+	public List<BoardVO> getBoardList(String searchCondition, String searchKeyword) ;
 }

@@ -33,7 +33,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.getBoard(vo);
 	}
 
-	public List<BoardVO> getBoardList() {
-		return boardDAO.getBoardList();
+//	public List<BoardVO> getBoardList() {
+//		return boardDAO.getBoardList();
+//	}
+
+	public List<BoardVO> getBoardList(String searchCondition, String searchKeyword) {
+		return boardDAO.getBoardList(searchCondition, searchKeyword);
 	}
 }
