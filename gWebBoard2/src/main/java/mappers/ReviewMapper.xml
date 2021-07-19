@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mappers/ReviewMapper.xml -->
+
+<mapper namespace="review">
+
+	<!-- 
+	resultType : 
+	데이터베이스의 date 유형과 
+	프로그램의 date 유형이 다르기 때문에 
+	따로 맞춰주어야 한다.
+	간단하게 하려면 그냥 string이라고 하면 된다. 
+	-->
+	<select id="getDate" resultType="string">
+		SELECT sysdate FROM dual
+	</select>
+
+
+</mapper>
